@@ -30,4 +30,4 @@ jobs:
       run: |
         ls -la
         cd predictive-maintenance-cicd
-        python pipeline.py
+        python run_pipeline.py
