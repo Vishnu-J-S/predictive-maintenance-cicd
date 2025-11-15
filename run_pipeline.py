@@ -55,7 +55,7 @@ def run_pipeline():
     joblib.dump(best_rf, "best_rf_model.joblib")
 
     HF_TOKEN = os.getenv("HF_TOKEN")
-    api = HfApi(token=HFTOKEN)
+    api = HfApi(token=HF_TOKEN)
     repo_id = "Vishnu-J-S/engine-failure-rf-model"
 
     api.create_repo(repo_id, repo_type="model", exist_ok=True)
