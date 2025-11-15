@@ -28,5 +28,6 @@ jobs:
       env:
         HF_TOKEN: ${{ secrets.HF_TOKEN }}
       run: |
+        ls -la
         cd predictive-maintenance-cicd
         python pipeline.py
