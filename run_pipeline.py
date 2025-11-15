@@ -8,6 +8,7 @@ from sklearn.ensemble import RandomForestClassifier
 from sklearn.model_selection import GridSearchCV
 from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score
 from huggingface_hub import HfApi
+import os
 
 def run_pipeline():
     # Load dataset
@@ -51,14 +52,12 @@ def run_pipeline():
         print("Best RF Params:", grid_search.best_params_)
         print("F1 Score:", f1_score(y_test, y_pred))
 
-    # Save model as joblib file
     joblib.dump(best_rf, "best_rf_model.joblib")
 
-    # Push model to Hugging Face Model Hub
-    api = HfApi()
+    HF_TOKEN = os.getenv("HF_TOKEN)
+    api = HfApi(token=HFTOKEN)
     repo_id = "Vishnu-J-S/engine-failure-rf-model"
 
-    # Create repo if it doesn't exist (safe to run even if repo exists)
     api.create_repo(repo_id, repo_type="model", exist_ok=True)
 
     api.upload_file(
